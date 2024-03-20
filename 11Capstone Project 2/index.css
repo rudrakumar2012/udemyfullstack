@@ -1,0 +1,60 @@
+.gradient-background {
+  background: linear-gradient(300deg, #15f5ba, #211951, #836fff);
+  background-size: 180% 180%;
+  animation: gradient-animation 18s ease infinite;
+}
+
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+#main .text-body-emphasis {
+  --bs-text-opacity: 1;
+  color: #f8f9fa !important;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+#main img {
+    border-radius: 5%;
+}
+
+#main p {
+    color: #dee2e6;
+    font-family: "Inria Serif", serif;
+}
+
+.dev {
+    text-decoration: underline;
+}
+
+.profile {
+    border-radius: 50%;
+}
+
+.text-body-emphasis {
+    --bs-text-opacity: 1;
+    color: #2d4072 !important;
+}
+
+hr {
+    border: dotted #232c2c 6px;
+    border-bottom: none;
+    width: 4%;
+    margin: 50px auto;
+}
+
+#skills img {
+    border-radius: 2%;
+}
+
+#footer p, #footer a {
+    color: #f8f9fa !important;
+}
