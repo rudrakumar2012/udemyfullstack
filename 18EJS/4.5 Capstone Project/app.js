@@ -13,12 +13,8 @@ app.get("/", (req, res) => {
     res.render("index.ejs", { posts });
 });
 
-app.get("/about", (req, res) => {
-    res.render("about.ejs");
-});
-
-app.get("/contact", (req, res) => {
-    res.render("contact.ejs");
+app.get("/post", (req, res) => {
+    res.render("post.ejs", { posts });
 });
 
 app.get("/post/new", (req, res) => {
@@ -40,7 +36,7 @@ app.post("/post/new", (req, res) => {
     console.log("New Post:", { id: postId, title, content });
     posts.push({ id: postId, title, content });
     savePosts(posts);
-    res.redirect("/");
+    res.redirect("/post");
 });
 
 app.post("/post/:id/edit", (req, res) => {
@@ -52,8 +48,8 @@ app.post("/post/:id/edit", (req, res) => {
     }
     posts[postIndex].title = title;
     posts[postIndex].content = content;
-    savePosts(posts); // Save updated posts to the JSON file
-    res.redirect("/");
+    savePosts(posts);
+    res.redirect("/post");
 });
 
 app.post("/post/:id/delete", (req, res) => {
@@ -64,7 +60,7 @@ app.post("/post/:id/delete", (req, res) => {
     }
     posts.splice(postIndex, 1);
     savePosts(posts);
-    res.redirect("/");
+    res.redirect("/post");
 });
 
 app.listen(port, () => {

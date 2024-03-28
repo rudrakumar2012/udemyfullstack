@@ -1,19 +1,43 @@
 <%- include("partials/header.ejs") %>
 
-<h2><a href="/post/new">Create Your Post here</a></h2>
-
-<h1>All Posts</h1>
-
-<% posts.forEach(post => { %>
-    <div>
-        <h2><%= post.title %></h2>
-        <p><%= post.content %></p>
-        <form action="/post/<%= post.id %>/edit" method="GET">
-            <button type="submit">Edit</button>
-        </form>
-        <form action="/post/<%= post.id %>/delete" method="POST">
-            <button type="submit">Delete</button>
-        </form>
+<div class="container hero1">
+  <div class="px-4 py-5 my-5 text-left">
+    <h1 class="display-5 fw-bold text-body-emphasis">Engage With Content</h1>
+    <div class="col-lg-6 sm-auto pl-0">
+      <p class="lead mb-4">Insights from our blog.</p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-left">
+        <a type="button" href="/post" class="btn btn-primary btn-lg px-5 gap-3">
+          Read More
+        </a>
+      </div>
     </div>
-<% }); %>
+  </div>
+</div>
+
+<div class="container my-5">
+  <div class="p-5 text-center bg-body-tertiary rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold">Share Your Story</h1>
+      <p class="py-2">Join the conversation</p>
+      <h2>
+        <a href="/post/new" class="btn btn-primary px-5 py-3 mb-3">Post Now</a>
+      </h2>
+    </div>
+  </div>
+</div>
+
+<div class="my-5">
+    <div class="p-5 text-center bg-body-tertiary">
+      <div class="container py-5">
+        <p class="col-lg-8 mx-auto fw-bold lead">
+            Our Ethos
+        </p>
+        <h1 class="text-body-emphasis">Dedicated to sharing knowledge, NodePress unites passionate writers and avid readers.</h1>
+        <p class="col-lg-8 mx-auto">
+            Join Our Community
+        </p>
+      </div>
+    </div>
+  </div>
+
 <%- include("partials/footer.ejs") %>
