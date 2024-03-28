@@ -25,17 +25,46 @@ app.get("/post/new", (req, res) => {
     res.render("newpost.ejs");
 });
 
-
-app.get("/newpost", (req, res) => {
-  res.render("newpost.ejs");
+app.get("/post/:id/edit", (req, res) => {
+    const postId = req.params.id;
+    const post = posts.find(post => post.id === postId);
+    if (!post) {
+        return res.status(404).send("Post not found");
+    }
+    res.render("editpost.ejs", { post });
 });
 
 app.post("/post/new", (req, res) => {
-  const { title, content } = req.body;
-  console.log("New Post:", { title, content });
-  posts.push({ title, content });
-  savePosts(posts);
-  res.redirect("/");
+    const { title, content } = req.body;
+    const postId = generateUniqueId();
+    console.log("New Post:", { id: postId, title, content });
+    posts.push({ id: postId, title, content });
+    savePosts(posts);
+    res.redirect("/");
+});
+
+app.post("/post/:id/edit", (req, res) => {
+    const postId = req.params.id;
+    const { title, content } = req.body;
+    const postIndex = posts.findIndex(post => post.id === postId);
+    if (postIndex === -1) {
+        return res.status(404).send("Post not found");
+    }
+    posts[postIndex].title = title;
+    posts[postIndex].content = content;
+    savePosts(posts); // Save updated posts to the JSON file
+    res.redirect("/");
+});
+
+app.post("/post/:id/delete", (req, res) => {
+    const postId = req.params.id;
+    const postIndex = posts.findIndex(post => post.id === postId);
+    if (postIndex === -1) {
+        return res.status(404).send("Post not found");
+    }
+    posts.splice(postIndex, 1);
+    savePosts(posts);
+    res.redirect("/");
 });
 
 app.listen(port, () => {
@@ -59,4 +88,8 @@ function savePosts(posts) {
     } catch (err) {
         console.error("Error saving posts:", err);
     }
+}
+
+function generateUniqueId() {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2, 5);
 }
