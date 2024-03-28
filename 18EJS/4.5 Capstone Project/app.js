@@ -33,7 +33,6 @@ app.get("/post/:id/edit", (req, res) => {
 app.post("/post/new", (req, res) => {
     const { title, content } = req.body;
     const postId = generateUniqueId();
-    console.log("New Post:", { id: postId, title, content });
     posts.push({ id: postId, title, content });
     savePosts(posts);
     res.redirect("/post");
