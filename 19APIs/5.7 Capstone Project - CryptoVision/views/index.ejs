@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CryptoVision</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <h1>CryptoVision</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>24h Change (%)</th>
+                <th>Market Cap</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% cryptoData.forEach(crypto => { %>
+                <tr>
+                    <td><%= crypto.name %></td>
+                    <td>$<%= formatPrice(crypto.quote.USD.price) %></td>
+                    <td><%= crypto.quote.USD.percent_change_24h.toFixed(2) %>%</td>
+                    <td>$<%= Math.round(crypto.quote.USD.market_cap) %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+    <% function formatPrice(price) {
+        if (price >= 1) {
+            return price.toFixed(2);
+        } else if (price >= 0.0001) {
+            return price.toFixed(4);
+        } else {
+            return price.toFixed(8);
+        }
+    } %>
+</body>
+</html>
