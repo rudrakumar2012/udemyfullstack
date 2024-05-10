@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 
-let isDone = false;
-
-function strike() {
-  isDone = true;
-}
-
-function unStrike() {
-  isDone = false;
-}
-
 function App() {
+  const [isDone, setIsDone] = useState(false);
+
+  function strike() {
+    setIsDone(true);
+  }
+
+  function unStrike() {
+    setIsDone(false);
+  }
+
   return (
     <div>
       <p style={isDone ? { textDecoration: "line-through" } : null}>Buy milk</p>
